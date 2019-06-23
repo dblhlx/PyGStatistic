@@ -296,35 +296,35 @@ def bsaseqPlot(chrmIDL, datafr, datafrT):
     # print(np.percentile(yNFE, [0.5, 99.5, 2.5, 97.5]))
 
     # Identify genomic regions related to the trait
-    i = 1
-    snpRegion = []
-    while i <= numOfChrs:
-        m, peaks = 0, []
-        # Handle the case in which an QTL is at the very begining of the chromosome
-        if points[i][0][1] >= thrshld:
-            snpRegion.append(points[i][0])
-            if points[i][0][1] > points[i][1][1]:
-                peaks.append(points[i][0][1:])
-            j = 1
+    # i = 1
+    # snpRegion = []
+    # while i <= numOfChrs:
+    #     m, peaks = 0, []
+    #     # Handle the case in which an QTL is at the very begining of the chromosome
+    #     if points[i][0][1] >= thrshld:
+    #         snpRegion.append(points[i][0])
+    #         if points[i][0][1] > points[i][1][1]:
+    #             peaks.append(points[i][0][1:])
+    #         j = 1
 
-        while m < len(points[i]) - 1:
-            if points[i][m][1] < thrshld and points[i][m+1][1] >= thrshld:
-                snpRegion.append(points[i][m+1])
-                j = 1
-            elif points[i][m][1] >= thrshld:
-                if max(points[i][m-1][1], points[i][m+1][1]) < points[i][m][1]:
-                    peaks.append(points[i][m][1:])
-                if points[i][m+1][1] > thrshld:
-                    j += 1
-                elif points[i][m+1][1] < thrshld:
-                    snpRegion[-1].extend([points[i][m][2], peaks, j])
-                    peaks = []
-            m += 1
-        # Handle the case in which an QTL is nearby the end of the chromosome
-        if points[i][-1][1] >= thrshld:
-            snpRegion[-1].extend([points[i][-1][2], peaks, j])
+    #     while m < len(points[i]) - 1:
+    #         if points[i][m][1] < thrshld and points[i][m+1][1] >= thrshld:
+    #             snpRegion.append(points[i][m+1])
+    #             j = 1
+    #         elif points[i][m][1] >= thrshld:
+    #             if max(points[i][m-1][1], points[i][m+1][1]) < points[i][m][1]:
+    #                 peaks.append(points[i][m][1:])
+    #             if points[i][m+1][1] > thrshld:
+    #                 j += 1
+    #             elif points[i][m+1][1] < thrshld:
+    #                 snpRegion[-1].extend([points[i][m][2], peaks, j])
+    #                 peaks = []
+    #         m += 1
+    #     # Handle the case in which an QTL is nearby the end of the chromosome
+    #     if points[i][-1][1] >= thrshld:
+    #         snpRegion[-1].extend([points[i][-1][2], peaks, j])
 
-        i += 1
+    #     i += 1
 
     # i = 1
     # snpRegion = []
@@ -352,8 +352,8 @@ def bsaseqPlot(chrmIDL, datafr, datafrT):
 
     #     i += 1
     
-    header = ['CHROM',r'ltaSNP/totalSNP','QTLStart','QTLEnd','Peaks', 'NumOfSWs']
-    pd.DataFrame(snpRegion, columns=header).to_csv(os.path.join(ldDir, args['output']), index=False)
+    # header = ['CHROM',r'ltaSNP/totalSNP','QTLStart','QTLEnd','Peaks', 'NumOfSWs']
+    # pd.DataFrame(snpRegion, columns=header).to_csv(os.path.join(ldDir, args['output']), index=False)
 
     wrnLog = os.path.join(ldDir, 'wrnLog.csv')
     with open(wrnLog, 'w', newline='') as outF1:
@@ -412,7 +412,7 @@ path = os.getcwd()
 currentDT = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
 inFile, oiFile = os.path.join(path,args['input']), os.path.join(path,'snp_fgc.csv')
 misc = []
-sc = [[0.1, 0.127], [0.1,0.123], [0.1,0.12], [0.1,0.113], [0.1, 0.11]]
+# sc = [[0.1, 0.127], [0.1,0.123], [0.1,0.12], [0.1,0.113], [0.1, 0.11]]
 
 with open(inFile, 'r') as du1:   
     header = next(du1).rstrip('\t\n').split('\t')
@@ -512,8 +512,8 @@ for ld in ldUL:
     miscLD.append(['Dataframe filtered with quality scores', qualityDF.shape])
 
     # thrshld = smThresholds(qualityDF)[0][1]
-    thrshld = sc[ldIndex][1]
-    print(thrshld)
+    # thrshld = sc[ldIndex][1]
+    # print(thrshld)
 
     # Filter out the entries with similar 'AD' ratio in both bulks
     fe = qualityDF[qualityDF['FE_P']<alpha]
