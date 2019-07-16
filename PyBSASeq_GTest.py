@@ -273,7 +273,8 @@ def bsaseqPlot(chrmIDL, datafr, datafrT):
         #     ax1[1,i-1].set_ylabel('G-statistic')
         #     ax1[2,i-1].set_ylabel(r'ltaSNP/totalSNP')
         
-        chrEnd.append((swStr+swEnd)/2)
+        # chrEnd.append((swStr+swEnd)/2)
+        chrEnd.append(x[-1])
         i += 1
     print(f'Preparation for plotting - complete - {time.time()-t0} seconds')
     
