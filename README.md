@@ -1,5 +1,5 @@
 
-__Update__: Instead of the python module (scipy.stats.chi2_contingency), [the general formula](https://en.wikipedia.org/wiki/G-test) is used for G-statistic calculation. The function based on this formula can take numpy arrays or Pandas series as input, which increases the speed of the script by more than a thousand times.
+__Update__: Instead of the python module (scipy.stats.chi2_contingency), [the general formula](https://en.wikipedia.org/wiki/G-test) is used for G-statistic calculation. The function based on this formula can take numpy arrays or Pandas series as input, which increases the speed of the script by more than five hundred times.
 
 # PyGStatistic
 BSA-Seq data analysis - Python implementation of the G-statistic method
